@@ -1,0 +1,28 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 mt-5">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Vezetéknév</th>
+          <th scope="col">Keresztnév</th>
+          <th scope="col">Életkor</th>
+          <th scope="col">Személyazonosító szám</th>
+          <th scope="col">Telefonszám</th>
+          <th scope="col">Cím</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th>{{ user.id }}</th>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.age }}</td>
+          <td>{{ user.IDNumber }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

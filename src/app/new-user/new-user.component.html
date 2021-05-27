@@ -1,0 +1,98 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+    <form [formGroup]="userForm">
+      <label for="lastName">Vezetéknév</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        formControlName="lastName"
+      />
+      <div
+        class="text-danger"
+        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+      >
+        <small>Vezetéknév megadása kötelező!</small>
+      </div>
+      <label for="firstName">Keresztnév</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        formControlName="firstName"
+      />
+      <div
+        class="text-danger"
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      >
+        <small>Keresztnév megadása kötelező!</small>
+      </div>
+      <label for="age">Életkor</label>
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        formControlName="age"
+      />
+      <div
+        class="text-danger"
+        *ngIf="age.invalid && (age.dirty || age.touched)"
+      >
+        <small>Életkor megadása kötelező!</small>
+      </div>
+
+      <label for="IDNumber">Személyi azonosító szám</label>
+      <input
+        type="text"
+        class="form-control"
+        id="IDNumber"
+        formControlName="IDNumber"
+      />
+      <div
+        class="text-danger"
+        *ngIf="IDNumber.invalid && (IDNumber.dirty || IDNumber.touched)"
+      >
+        <small>Személyi azonosító szám megadása kötelező!</small>
+      </div>
+
+      <label for="phone">Telefonszám</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phone"
+        formControlName="phone"
+      />
+      <div
+        class="text-danger"
+        *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+      >
+        <small>Telefonszám megadása kötelező!</small>
+      </div>
+
+      <label for="address">Cím</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        formControlName="address"
+      />
+      <div
+        class="text-danger"
+        *ngIf="address.invalid && (address.dirty || address.touched)"
+      >
+        <small>Cím megadása kötelező!</small>
+      </div>
+
+      <button
+        class="btn btn-primary mt-2"
+        [disabled]="!userForm.valid"
+        (click)="addUser()"
+      >
+        Ügyfél adatainak mentése és tovább a kölcsönzéshez!
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from './User';
 
 @Entity()
 export class Stock {
@@ -29,9 +28,4 @@ export class Stock {
 
   @Column()
   mileage: number;
-
-  @Column({ default: false })
-  status: boolean;
-
-  @ManyToOne((type) => User, (user) => user.stocks) user: User;
 }

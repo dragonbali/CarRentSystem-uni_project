@@ -1,0 +1,79 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+    <form [formGroup]="rentalForm">
+      <label for="user">Ügyfél</label>
+      <select class="form-control" name="user" id="user" formControlName="user">
+        <option *ngFor="let user of users" [ngValue]="user">
+          {{ user.lastName }} {{ user.firstName }} | {{ user.phone }}
+        </option>
+      </select>
+
+      <label for="stock">Jármű</label>
+      <select
+        class="form-control"
+        name="stock"
+        id="stock"
+        formControlName="stock"
+      >
+        <option *ngFor="let stock of stocks" [ngValue]="stock">
+          {{ stock.manufacturer }} {{ stock.type }} | {{ stock.plateNumber }} |
+          {{ stock.price }} Ft/bérlés | {{ stock.mileage }} Ft/km
+        </option>
+      </select>
+      <label for="startingDate">Kölcsönzés kezdetének dátuma</label>
+      <input
+        type="date"
+        class="form-control"
+        id="startingDate"
+        formControlName="startingDate"
+      />
+      <div
+        class="date"
+        *ngIf="
+          startingDate.invalid && (startingDate.dirty || startingDate.touched)
+        "
+      >
+        <small>Kölcsönzés kezdetének dátuma megadása kötelező!</small>
+      </div>
+      <label for="endingDate">Kölcsönzés befejezésének dátuma</label>
+      <input
+        type="date"
+        class="form-control"
+        id="endingDate"
+        formControlName="endingDate"
+      />
+      <div
+        class="date"
+        *ngIf="endingDate.invalid && (endingDate.dirty || endingDate.touched)"
+      >
+        <small>Kölcsönzés befejezésének dátuma megadása kötelező!</small>
+      </div>
+      <label for="insuranceMoney">biztosítási összeg</label>
+      <input
+        type="number"
+        class="form-control"
+        id="insuranceMoney"
+        formControlName="insuranceMoney"
+      />
+      <div
+        class="number"
+        *ngIf="
+          insuranceMoney.invalid &&
+          (insuranceMoney.dirty || insuranceMoney.touched)
+        "
+      >
+        <small>biztosítási összeg megadása kötelező!</small>
+      </div>
+      <button
+        class="btn btn-primary mt-2"
+        [disabled]="!rentalForm.valid"
+        (click)="addRental()"
+      >
+        Kölcsönzés véglegesítése
+      </button>
+    </form>
+  </div>
+</div>

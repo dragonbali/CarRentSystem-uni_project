@@ -1,0 +1,97 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 mt-5">
+    <h3>Kölcsönzés számlázása</h3>
+    <form [formGroup]="billingForm">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Kölcsönző neve</th>
+            <th scope="col">Kölcsönző telefonszáma</th>
+            <th scope="col">Kölcsönző címe</th>
+            <th scope="col">Kölcsönzött jármű</th>
+            <th scope="col">Biztosítási pénz</th>
+            <th scope="col">
+              Futott kilóméter
+              <span class="red">*</span>
+            </th>
+            <th scope="col">
+              Volt-e sérülése
+              <span class="red">*</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.lastName }} {{ user.firstName }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.address }}</td>
+            <td>
+              {{ stock.manufacturer }} {{ stock.type }} |
+              {{ stock.plateNumber }}
+            </td>
+            <td>{{ rental.insuranceMoney }} Ft</td>
+
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                id="km"
+                formControlName="km"
+              />
+            </td>
+            <td>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="boxDamaged"
+                  value="false"
+                  formControlName="boxDamaged"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Sérült
+                </label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button
+        (click)="save()"
+        [disabled]="!billingForm.valid"
+        type="submit"
+        class="btn btn-success mt-3"
+      >
+        Számlázás
+      </button>
+    </form>
+    <div *ngIf="billButtonPressed == true">
+      <h3 class="mt-5">Számla</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Név</th>
+            <th scope="col">Cím</th>
+            <th scope="col">Fizetendő</th>
+            <th scope="col">Végösszeg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.lastName }} {{ user.firstName }}</td>
+            <td>{{ user.address }}</td>
+            <td>
+              {{ stock.price }}[Ft/nap] * {{ days }}[nap] +
+              {{ stock.mileage }}[Ft/km] * {{ kmeters }}[km] +
+              {{ damagePrice }} [Sérülés Ft]
+            </td>
+            <td class="bold">
+              {{ stock.price * days + stock.mileage * kmeters + damagePrice }}
+              Ft
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

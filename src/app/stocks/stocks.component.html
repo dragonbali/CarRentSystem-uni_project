@@ -1,0 +1,33 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 mt-5">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Típus</th>
+          <th scope="col">Gyártó</th>
+          <th scope="col">Rendszám</th>
+          <th scope="col">Alvázszám</th>
+          <th scope="col">Vásárlás dátuma</th>
+          <th scope="col">Szériaszám</th>
+          <th scope="col">Ár/bérlés</th>
+          <th scope="col">Kilóméterdíja</th>
+          <th scope="col">Státusz</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of stocks">
+          <th>{{ stock.id }}</th>
+          <td>{{ stock.type }}</td>
+          <td>{{ stock.manufacturer }}</td>
+          <td>{{ stock.plateNumber }}</td>
+          <td>{{ stock.chassisNumber }}</td>
+          <td>{{ stock.dateOfPurchase | date: "yyyy/MM/dd" }}</td>
+          <td>{{ stock.serialNumber }}</td>
+          <td>{{ stock.price }} Ft</td>
+          <td>{{ stock.mileage }} Ft</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

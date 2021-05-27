@@ -1,0 +1,56 @@
+<div class="row d-flex justify-content-center mt-5">
+  <h2 class="mr-4">Új Kölcsönzés</h2>
+
+  <a
+    routerLink="/newUser"
+    routerLinkActive="active"
+    class="btn btn-primary mr-4"
+  >
+    Új ügyfél
+  </a>
+  <a
+    routerLink="/newRental"
+    routerLinkActive="active"
+    class="btn btn-secondary"
+  >
+    Meglévő ügyfél
+  </a>
+</div>
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 mt-5">
+    <h3>Meglévő Kölcsönzések</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Kölcsönző személy</th>
+          <th scope="col">Kölcsönzés kezdése</th>
+          <th scope="col">Kölcsönzés befejezése</th>
+          <th scope="col">Aktív-e ez a kölcsönzés</th>
+          <th scope="col">Biztosítási pénz</th>
+          <th scope="col">Műveletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rental of rentals">
+          <td>
+            {{ rental.user.lastName }} {{ rental.user.firstName }} |
+            {{ rental.user.phone }}
+          </td>
+          <td>{{ rental.startingDate | date: "yyyy/MM/dd" }}</td>
+          <td>{{ rental.endingDate | date: "yyyy/MM/dd" }}</td>
+          <td>{{ rental.isActive ? "Igen" : "Nem" }}</td>
+          <td>{{ rental.insuranceMoney }} Ft</td>
+          <td *ngIf="rental.isActive">
+            <a
+              [routerLink]="['/billing', rental.id]"
+              routerLinkActive="active"
+              class="btn btn-success"
+            >
+              Számlázás
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
