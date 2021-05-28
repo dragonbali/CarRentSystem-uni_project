@@ -19,8 +19,11 @@
         formControlName="stock"
       >
         <option *ngFor="let stock of stocks" [ngValue]="stock">
-          {{ stock.manufacturer }} {{ stock.type }} | {{ stock.plateNumber }} |
-          {{ stock.price }} Ft/bérlés | {{ stock.mileage }} Ft/km
+          <ng-container *ngIf="stock.available == true">
+            {{ stock.manufacturer }} {{ stock.type }} |
+            {{ stock.plateNumber }} | {{ stock.price }} Ft/bérlés |
+            {{ stock.mileage }} Ft/km
+          </ng-container>
         </option>
       </select>
       <label for="startingDate">Kölcsönzés kezdetének dátuma</label>

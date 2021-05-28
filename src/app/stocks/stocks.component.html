@@ -3,7 +3,6 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">Típus</th>
           <th scope="col">Gyártó</th>
           <th scope="col">Rendszám</th>
@@ -17,7 +16,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let stock of stocks">
-          <th>{{ stock.id }}</th>
           <td>{{ stock.type }}</td>
           <td>{{ stock.manufacturer }}</td>
           <td>{{ stock.plateNumber }}</td>
@@ -26,6 +24,9 @@
           <td>{{ stock.serialNumber }}</td>
           <td>{{ stock.price }} Ft</td>
           <td>{{ stock.mileage }} Ft</td>
+          <td>
+            {{ stock.available ? "Foglalt" : "Elérhető" }}
+          </td>
         </tr>
       </tbody>
     </table>

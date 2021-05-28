@@ -15,4 +15,9 @@ export class StockService {
       .get<Stock[]>('http://localhost:8080/getStocks')
       .toPromise();
   }
+  async updateStock(stock: Stock): Promise<Stock[]> {
+    return this.http
+      .put<Stock[]>('http://localhost:8080/updateStock', stock)
+      .toPromise();
+  }
 }

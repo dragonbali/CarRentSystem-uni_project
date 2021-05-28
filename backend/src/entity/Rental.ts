@@ -28,7 +28,5 @@ export class Rental {
 
   @ManyToOne((type) => User, { eager: true, cascade: true }) user: User;
 
-  @OneToOne((type) => Stock, { eager: true, cascade: true })
-  @JoinColumn()
-  stock: Stock;
+  @ManyToOne((type) => Stock, { eager: true, cascade: true }) stock: Stock;
 }

@@ -15,6 +15,7 @@ import { RentalService } from '../services/rental.service';
 export class NewRentalComponent implements OnInit {
   users: User[];
   stocks: Stock[];
+  allStocks: Stock[];
 
   errorMessage: string;
 
@@ -59,7 +60,9 @@ export class NewRentalComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.users = await this.userService.getUsers();
-      this.stocks = await this.stockService.getStocks();
+      this.stocks = (await this.stockService.getStocks()).filter(
+        (item) => item.available == true
+      );
     } catch (error) {
       console.log(error);
     }
@@ -67,16 +70,21 @@ export class NewRentalComponent implements OnInit {
 
   async addRental() {
     const rental = this.rentalForm.value;
+    let stockToUpdate: Stock;
+    this.stocks.forEach((element) => {
+      if (element.id === rental.stock.id) {
+        stockToUpdate = element;
+      }
+    });
+    stockToUpdate.available = false;
     try {
       this.errorMessage = '';
       await this.rentalService.addRental(rental);
+      await this.stockService.updateStock(stockToUpdate);
+
       this.router.navigateByUrl('/rent');
     } catch (err) {
       this.errorMessage = err.error.message;
     }
-  }
-
-  compareUsers(user1: User, user2: User): boolean {
-    return user1 && user2 && user1.id == user2.id;
   }
 }

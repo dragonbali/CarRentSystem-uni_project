@@ -3,9 +3,7 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Vezetéknév</th>
-          <th scope="col">Keresztnév</th>
+          <th scope="col">Név</th>
           <th scope="col">Életkor</th>
           <th scope="col">Személyazonosító szám</th>
           <th scope="col">Telefonszám</th>
@@ -14,9 +12,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
-          <th>{{ user.id }}</th>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }} {{ user.firstName }}</td>
           <td>{{ user.age }}</td>
           <td>{{ user.IDNumber }}</td>
           <td>{{ user.phone }}</td>

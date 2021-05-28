@@ -8,4 +8,5 @@ export class Stock {
   serialNumber: number;
   price: number;
   mileage: number;
+  available: boolean;
 }

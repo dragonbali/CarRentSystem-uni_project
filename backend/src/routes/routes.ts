@@ -13,6 +13,7 @@ export function getRouter(): Router {
   router.get('/getStocks', stockController.getAll);
   router.get('/getStock/:id', stockController.getOne);
   router.post('/addStock', stockController.create);
+  router.put('/updateStock', stockController.update);
 
   router.get('/getUsers', userController.getAll);
   router.get('/getUser/:id', userController.getOne);

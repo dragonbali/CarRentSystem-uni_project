@@ -23,6 +23,7 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Kölcsönző személy</th>
+          <th scope="col">Kölcsönzött jármű</th>
           <th scope="col">Kölcsönzés kezdése</th>
           <th scope="col">Kölcsönzés befejezése</th>
           <th scope="col">Aktív-e ez a kölcsönzés</th>
@@ -36,6 +37,10 @@
             {{ rental.user.lastName }} {{ rental.user.firstName }} |
             {{ rental.user.phone }}
           </td>
+          <td>
+            {{ rental.stock.manufacturer }} {{ rental.stock.type }} |
+            {{ rental.stock.plateNumber }}
+          </td>
           <td>{{ rental.startingDate | date: "yyyy/MM/dd" }}</td>
           <td>{{ rental.endingDate | date: "yyyy/MM/dd" }}</td>
           <td>{{ rental.isActive ? "Igen" : "Nem" }}</td>
@@ -47,6 +52,14 @@
               class="btn btn-success"
             >
               Számlázás
+            </a>
+          </td>
+          <td *ngIf="rental.isActive == false">
+            <a
+              class="btn btn-outline-primary disabled pr-4"
+              aria-disabled="true"
+            >
+              Kifizetve
             </a>
           </td>
         </tr>

@@ -6,6 +6,7 @@ import { Rental } from '../models/rental';
 import { Stock } from '../models/stock';
 import { User } from '../models/user';
 import { RentalService } from '../services/rental.service';
+import { StockService } from '../services/stock.service';
 
 @Component({
   selector: 'app-billing',
@@ -30,6 +31,7 @@ export class BillingComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rentalService: RentalService,
+    private stockService: StockService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -52,10 +54,12 @@ export class BillingComponent implements OnInit {
     }
 
     this.rental.isActive = false;
+    this.stock.available = true;
 
     try {
       this.errorMessage = '';
       await this.rentalService.updateRental(this.rental);
+      await this.stockService.updateStock(this.stock);
     } catch (err) {
       this.errorMessage = err.error.message;
     }

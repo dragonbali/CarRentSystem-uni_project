@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Rental } from './Rental';
 
 @Entity()
 export class Stock {
@@ -28,4 +29,9 @@ export class Stock {
 
   @Column()
   mileage: number;
+
+  @Column()
+  available: boolean;
+
+  @OneToMany((type) => Rental, (rental) => rental.id) rentals: Rental[];
 }
